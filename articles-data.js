@@ -1,4 +1,4 @@
-[
+window.__ARTICLES__ = [
   {
     "id": 1,
     "title": "What Finally Made Spring trench coat care Consistent",
@@ -549,4 +549,4 @@
     "excerpt": "I treated breathing breaks between meetings as three practical questions: when to start, what to do first, and how to recover after drift. Once those answers were clear, both sleep onset time and afternoon drowsiness score became far more stable.",
     "content": "<p>I wrote this process as a short Q and A instead of motivational notes. Question one was about trigger timing, question two was about the first reliable action, and question three was about damage control after a bad day.</p><img src=\"https://picsum.photos/seed/luchu-247/1200/700\" style=\"width: 100%; border-radius: 20px; margin: 30px 0;\" alt=\"Article 50 image 1\"><p>For the trigger, I anchored the start at the office pantry and kept the opening move tiny: putting the hardest step at the most alert hour. A smaller start lowered resistance and made it realistic even on crowded days.</p><img src=\"https://picsum.photos/seed/luchu-248/1200/700\" style=\"width: 100%; border-radius: 20px; margin: 30px 0;\" alt=\"Article 50 image 2\"><p>For execution, I used a fixed sequence: putting the hardest step at the most alert hour and then starting with low-intensity movement. I also checked whether a timer was back in place before ending the block, which removed reset friction the next day.</p><img src=\"https://picsum.photos/seed/luchu-249/1200/700\" style=\"width: 100%; border-radius: 20px; margin: 30px 0;\" alt=\"Article 50 image 3\"><p>For recovery, I watched only sleep onset time and afternoon drowsiness score. When pushing intensity too hard in week one showed up, I switched to a 25-minute fallback block instead of trying to force a full run.</p><img src=\"https://picsum.photos/seed/luchu-250/1200/700\" style=\"width: 100%; border-radius: 20px; margin: 30px 0;\" alt=\"Article 50 image 4\"><p>This format reduced decision fatigue more than I expected. I no longer rebuilt the plan in real time, and after 11 weeks I could usually return to baseline within 30 hours while keeping body feedback became easier to predict.</p>"
   }
-]
+];

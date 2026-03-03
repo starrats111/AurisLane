@@ -2,23 +2,57 @@
 // AurisLane - Main JavaScript
 // ============================================
 
-// Global variables - articles loaded from JSON
-let articles = [];
+// Global variables
+let articles = Array.isArray(window.__ARTICLES__) ? window.__ARTICLES__ : [];
 
-async function loadArticles() {
-    try {
-        const response = await fetch('articles.json');
-        articles = await response.json();
-    } catch (e) {
-        console.error('Failed to load articles:', e);
-    }
-    initializePage();
+if (!articles.length) {
+    console.error('No article data found. Please ensure articles-data.js is loaded before script.js.');
 }
 
 let currentPage = 1;
 let articlesPerPage = 6;
 let currentCategory = 'all';
 let searchQuery = '';
+const fallbackImage = "https://images.unsplash.com/photo-1484101403633-562f891dc89a?w=800&h=500&fit=crop";
+
+function sanitizeImageUrl(url) {
+    if (typeof url !== 'string' || !url.trim()) {
+        return fallbackImage;
+    }
+    return url.trim().replace(/\bphoto-\d+(?:-\d+){2,}\b/g, 'photo-1484101403633-562f891dc89a');
+}
+
+function sanitizeHtmlImages(html) {
+    if (typeof html !== 'string') {
+        return '';
+    }
+
+    return html.replace(/<img\b[^>]*>/gi, (imgTag) => {
+        let updatedTag = imgTag.replace(/\bsrc="([^"]+)"/i, (_, src) => `src="${sanitizeImageUrl(src)}"`);
+
+        if (!/\bonerror=/i.test(updatedTag)) {
+            updatedTag = updatedTag.replace(
+                /<img\b/i,
+                `<img onerror="this.onerror=null;this.src='${fallbackImage}'"`
+            );
+        }
+
+        return updatedTag;
+    });
+}
+
+function normalizeArticlesImageUrls() {
+    if (!Array.isArray(articles)) {
+        return;
+    }
+
+    articles = articles.map(article => {
+        const safeArticle = { ...article };
+        safeArticle.image = sanitizeImageUrl(article.image);
+        safeArticle.content = sanitizeHtmlImages(article.content);
+        return safeArticle;
+    });
+}
 
 // Generate URL-friendly slug from title/name
 function generateSlug(text) {
@@ -32,7 +66,8 @@ function generateSlug(text) {
 
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', function() {
-    loadArticles();
+    normalizeArticlesImageUrls();
+    initializePage();
 });
 
 // Initialize header search functionality
@@ -104,7 +139,7 @@ function loadFeaturedArticles() {
     
     featuredContainer.innerHTML = featured.map(article => `
         <div class="article-card" onclick="window.location.href='article-detail.html?id=${generateSlug(article.title)}'">
-            <img src="${article.image}" alt="${article.title}" class="article-card-image">
+            <img src="${article.image}" alt="${article.title}" class="article-card-image" onerror="this.onerror=null;this.src='${fallbackImage}'">
             <div class="article-card-content">
                 <span class="article-card-category">${article.categoryName}</span>
                 <h3 class="article-card-title">${article.title}</h3>
@@ -198,7 +233,7 @@ function displayArticles() {
     } else {
         articlesGrid.innerHTML = paginatedArticles.map(article => `
             <div class="article-card" onclick="window.location.href='article-detail.html?id=${generateSlug(article.title)}'">
-                <img src="${article.image}" alt="${article.title}" class="article-card-image">
+                <img src="${article.image}" alt="${article.title}" class="article-card-image" onerror="this.onerror=null;this.src='${fallbackImage}'">
                 <div class="article-card-content">
                     <span class="article-card-category">${article.categoryName}</span>
                     <h3 class="article-card-title">${article.title}</h3>
@@ -260,7 +295,7 @@ function loadArticleDetail() {
     const articleHeader = document.getElementById('articleHeader');
     if (articleHeader) {
         articleHeader.innerHTML = `
-            <img src="${article.image}" alt="${article.title}" class="article-header-image">
+            <img src="${article.image}" alt="${article.title}" class="article-header-image" onerror="this.onerror=null;this.src='${fallbackImage}'">
             <div class="article-header-content">
                 <span class="article-header-category">${article.categoryName}</span>
                 <h1 class="article-header-title">${article.title}</h1>
@@ -297,7 +332,7 @@ function loadRelatedArticles(currentArticle) {
     
     relatedContainer.innerHTML = related.map(article => `
         <div class="article-card" onclick="window.location.href='article-detail.html?id=${generateSlug(article.title)}'">
-            <img src="${article.image}" alt="${article.title}" class="article-card-image">
+            <img src="${article.image}" alt="${article.title}" class="article-card-image" onerror="this.onerror=null;this.src='${fallbackImage}'">
             <div class="article-card-content">
                 <span class="article-card-category">${article.categoryName}</span>
                 <h3 class="article-card-title">${article.title}</h3>
