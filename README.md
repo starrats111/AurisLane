@@ -1,6 +1,6 @@
 # AurisLane - Lifestyle Blog Website
 
-A beautiful, soft and sweet styled lifestyle blog website featuring articles and product recommendations across six categories.
+A beautiful, soft and sweet styled lifestyle blog website featuring articles across six categories.
 
 ## Features
 
@@ -23,8 +23,6 @@ A beautiful, soft and sweet styled lifestyle blog website featuring articles and
   - Blog article listing with search and category filters
   - Pagination for articles
   - Individual article detail pages
-  - Product recommendation pages
-  - Product detail pages with reviews
   - About page
   - Contact form
   - Social media integration
@@ -37,14 +35,11 @@ AurisLane/
 ├── index.html              # Homepage
 ├── articles.html           # Articles listing page
 ├── article-detail.html     # Individual article page
-├── products.html           # Products listing page
-├── product-detail.html     # Individual product page
 ├── about.html              # About page
 ├── contact.html            # Contact page
 ├── styles.css              # Main stylesheet
 ├── script.js               # JavaScript functionality
-├── articles.json           # Articles data
-├── products.json           # Products data
+├── articles.json           # Articles data (50 articles)
 └── README.md               # This file
 ```
 
@@ -63,23 +58,12 @@ AurisLane/
 
 2. **Navigate the site:**
    - Browse articles by category or search
-   - View product recommendations
-   - Read detailed articles and product reviews
+   - Read detailed articles
    - Contact through the contact form
 
 ## Articles
 
-The website includes 5 blog articles with dates from September 2025 to January 2026:
-
-1. **Sustainable Fashion: Building a Timeless Wardrobe** (September 2025)
-2. **Natural Skincare Routine for Glowing Skin** (October 2025)
-3. **Creating a Cozy Autumn Garden Retreat** (November 2025)
-4. **Hidden Gems: Budget-Friendly European Destinations** (December 2025)
-5. **Smart Financial Planning for the New Year** (January 2026)
-
-## Products
-
-6 curated product recommendations across different categories with detailed reviews and features.
+The website includes 50 blog articles across six lifestyle categories, with dates from September 2024 to February 2026. Each article features a hero image and four content images from Unsplash.
 
 ## Customization
 
@@ -95,7 +79,6 @@ Edit CSS variables in `styles.css`:
 
 ### Content
 - Edit `articles.json` to add/modify articles
-- Edit `products.json` to add/modify products
 
 ### Styling
 - All styles are in `styles.css`
@@ -119,4 +102,5 @@ Edit CSS variables in `styles.css`:
 ## License
 
 This project is created for demonstration purposes.
+
 
