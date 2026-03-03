@@ -107,22 +107,23 @@ function performHeaderSearch() {
 
 // Initialize page based on current page
 function initializePage() {
-    const path = window.location.pathname;
-    const filename = path.split('/').pop() || 'index.html';
-    
+    const path = window.location.pathname.toLowerCase();
+    const pathSegments = path.split('/').filter(Boolean);
+    const lastSegment = pathSegments.length ? pathSegments[pathSegments.length - 1] : 'index';
+
     // Initialize header search functionality
     initializeHeaderSearch();
-    
-    if (filename === 'index.html' || filename === '') {
+
+    if (lastSegment === 'index.html' || lastSegment === 'index') {
         loadFeaturedArticles();
-    } else if (filename === 'articles.html') {
+    } else if (lastSegment === 'articles.html' || lastSegment === 'articles') {
         initializeArticlesPage();
-    } else if (filename === 'article-detail.html') {
+    } else if (lastSegment === 'article-detail.html' || lastSegment === 'article-detail') {
         loadArticleDetail();
-    } else if (filename === 'contact.html') {
+    } else if (lastSegment === 'contact.html' || lastSegment === 'contact') {
         initializeContactForm();
     }
-    
+
     initializeMobileMenu();
     initializeSocialShare();
 }
